@@ -1,6 +1,0 @@
-<!--<p>-->
-    <!--&lt;!&ndash;<a href="{% url 'learning_logs:index' %}">Learning Log</a>&ndash;&gt;-->
-    <!--&lt;!&ndash; <a href="{% url 'learning_logs:topics' %}">Topics</a> &ndash;&gt;-->
-<!--</p>-->
-
-<!--&lt;!&ndash;{% block content %}{% endblock content %}&ndash;&gt;-->
