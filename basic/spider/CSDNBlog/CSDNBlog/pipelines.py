@@ -76,9 +76,18 @@ class WebCsdnblogPipeline(object):
         print 6666666666666666666666666
         print item['name']
         print item['url']
+	print type(item['name'])
+	print type(item['url'])
+	
         sql="insert into testtable(name,url) values(%s,%s)"
-        params=(item["name"],item["url"])
+        #sql="insert into testtable(name,url) values('黑熊','垃圾')"
+        #sql="insert into testtable(name,url) values('heixiong',laji)"
+        #params=(item["name"],item["url"])
+	params=(json.dumps(item["name"]),item["url"])
+        #params=('heixiong',item["url"])
+        #params=('heixiong','2b')
         print 77777777777777777777777777
+        #tx.execute(sql)
         tx.execute(sql,params)
 
     #错误处理方法
