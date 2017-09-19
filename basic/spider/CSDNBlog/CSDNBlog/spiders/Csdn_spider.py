@@ -26,6 +26,9 @@ class CSDNBlogSpider(Spider):
         article_url = str(response.url)
         article_name = sel.xpath('//div[@id="article_details"]/div/h1/span/a/text()').extract()
 
+        # print 0000000000000000
+        # print article_name
+        # print 0000000000000000
         # item['article_name'] = [n.encode('utf-8') for n in article_name ]
         # item['article_url'] = article_url.encode('utf-8')
         item['name'] = [n.encode('utf-8') for n in article_name]

@@ -10,6 +10,7 @@ import codecs
 from twisted.enterprise import adbapi
 import MySQLdb
 import MySQLdb.cursors
+import re
 from logging import log
 
 class JsonCsdnblogPipeline(object):
@@ -76,16 +77,31 @@ class WebCsdnblogPipeline(object):
         print 6666666666666666666666666
         print item['name']
         print item['url']
-	print type(item['name'])
-	print type(item['url'])
+        print type(item['name'])
 	
         sql="insert into testtable(name,url) values(%s,%s)"
         #sql="insert into testtable(name,url) values('黑熊','垃圾')"
         #sql="insert into testtable(name,url) values('heixiong',laji)"
         #params=(item["name"],item["url"])
-	params=(json.dumps(item["name"]),item["url"])
-        #params=('heixiong',item["url"])
-        #params=('heixiong','2b')
+
+        # line = json.dumps(item["name"])
+        # json_str=line.decode("unicode_escape")
+
+        # line = json.dumps(dict(item)) + '\n'  # 转为json格式
+        # self.file.write(line.decode("unicode_escape"))
+
+        #line = json.dumps(dict(item)) + '\n'
+        #json_str = line.decode("unicode_escape")
+
+
+        str1 = "".join(item['name'])
+        print str1
+
+        new_string = "".join(str1.split()) #去掉字符串中回车
+        print new_string
+
+        params = (new_string,item['url'])
+
         print 77777777777777777777777777
         #tx.execute(sql)
         tx.execute(sql,params)
