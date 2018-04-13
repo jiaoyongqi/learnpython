@@ -8,12 +8,10 @@ def loop0():
     sleep(4)
     print 'loop 0 done at:',ctime()
 
-
 def loop1():
     print 'start loop 1 at:', ctime()
     sleep(2)
     print 'loop 1 done at:', ctime()
-
 
 def main():
     print 'starting at:',ctime()
