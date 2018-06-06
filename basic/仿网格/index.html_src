@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>仿网格</title>
+    <style>
+        #main {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" style="width: 650px;height:650px;"></div>
+    <script src="./jquery.min.js"></script>
+    <script src="./echarts.min.js"></script>
+    <script>
+    	var arr;
+    	var Data=new Array();
+    	var DataStringXy=new Array();
+    	// var DataFloatXy=new Array();
+    	var DataShow=new Array();
+
+
+    	function myDataShow(data){
+    		Data = data.split('\n');
+            for(var i = 0; i< Data.length; i++){
+            	DataStringXy[i]=Data[i].split(',');
+            	var DataFloatXy=new Array();
+            	DataFloatXy[0]=(parseFloat(DataStringXy[i][0]));
+            	DataFloatXy[1]=(parseFloat(DataStringXy[i][1]));
+            	DataShow.push(DataFloatXy);
+            }
+
+    	}
+
+
+        var myChart = echarts.init(document.getElementById('main'));
+        $.ajax({
+            url: 'test.txt',
+            dataType: 'text',
+            success: function (data) {
+            	myDataShow(data);
+                // Data = data.split('\n');
+                // for(var i = 0; i< Data.length; i++){
+                // 	DataStringXy[i]=Data[i].split(',');
+                // 	var DataFloatXy=new Array();
+                // 	DataFloatXy[0]=(parseFloat(DataStringXy[i][0]));
+                // 	DataFloatXy[1]=(parseFloat(DataStringXy[i][1]));
+                // 	// console.log(DataFloatXy[0]);
+                // 	// console.log(DataFloatXy[1]);
+                // 	// alert(DataFloatXy);
+                // 	DataShow.push(DataFloatXy);
+                // }
+                // console.log(DataShow);
+                 
+            }
+        });
+
+        console.log(DataShow);
+        // function myDataShow(){
+        // 	console.log(DataShow);
+        // 	return DataShow;
+        // }
+
+        option = {
+            grid: {
+                left: '2%',
+                right: '2%',
+                bottom: '2%',
+                top: '2%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                min: 0,
+                max: 500,
+                interval: 20,
+            },
+            yAxis: {
+                type: 'value',
+                min: 0,
+                max: 500,
+                interval: 20
+            },
+            series: [{
+                symbolSize: 20,
+                data:DataShow,
+                // data: [
+                //     [100.0, 58.04],
+                //     [68.0, 156.95],
+                //     [50.0, 79.58],
+                //     [90.0, 128.81],
+                //     [15.0, 89.33],
+                //     [47.0, 90.96],
+                //     [60.0, 70.24],
+                //     [49.0, 94.26],
+                //     [30.0, 210.84],
+                //     [27.0, 374.82],
+                //     [40.0, 225.68]
+                // ],
+                type: 'scatter'
+            }]
+        };
+
+        myChart.setOption(option);
+    </script>
+
+</body>
+
+</html>
