@@ -5,17 +5,20 @@ import json
 app = Flask(__name__)#实例化app对象
 
 testInfo = {}
+num=10
 
 @app.route('/test_post/nn',methods=['GET','POST'])#路由
 def test_post():
+    global num
     recv_data = request.get_data()
     print recv_data
     json_re = json.loads(recv_data)
     print json_re['email']
     print json_re['phone']
+    num = num + 1
 
     testInfo['name'] = 'xiaoming'
-    testInfo['age'] = '28'
+    testInfo['age'] = num
     return json.dumps(testInfo)
 
 @app.route('/')

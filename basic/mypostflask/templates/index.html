@@ -44,21 +44,24 @@
         };
 		
 		console.log(student)
+		
 
         var senddata = JSON.stringify(student);
-
+-
         console.log(senddata)
 
-        $.ajax({
-            url: "test_post/nn",
-            type: "POST",
-            data: senddata,
-            dataType: "json",
-            success: function (data) {
-                console.log(data)
-            }
-        })
-		
+        setInterval(function query() {
+            $.ajax({
+                url: "test_post/nn",
+                type: "POST",
+                data: senddata,
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                }
+            })
+        }, 1000);
+
 
 	</script>
     
