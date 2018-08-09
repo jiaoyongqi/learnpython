@@ -138,6 +138,10 @@ map.centerAndZoom(new BMap.Point(103.388611, 35.563611), 5); //初始显示中�
 // map.enableScrollWheelZoom();//滚轮放大缩小
 map.disableDragging();//禁止地图拖拽
 
+//设置地图样式
+var mapStyle={  style : "midnight" }  
+map.setMapStyle(mapStyle);
+
 setTimeout(dynamicLine, 1000);//动态生成新的点。
 //添加线
 function addLine(points) {
@@ -151,7 +155,7 @@ function addLine(points) {
         linePoints.push(new BMap.Point(points[i].lng, points[i].lat));
     }
 
-    polyline = new BMap.Polyline(linePoints, { strokeColor: "red", strokeWeight: 2, strokeOpacity: 0.5 });   //创建折线
+    polyline = new BMap.Polyline(linePoints, { strokeColor: "red", strokeWeight: 5 });   //创建折线
     map.addOverlay(polyline);   //增加折线
 }
 
@@ -195,11 +199,14 @@ function setZoom(bPoints) {
     map.centerAndZoom(centerPoint, mapZoom);
 }
 
+var point, marker;
 function addMarker(points) {  // 创建图标对象   
-    var point, marker;
-    // 创建标注对象并添加到地图   
+    // 创建标注对象并添加到地图
     for (var i = 0, pointsLen = points.length; i < pointsLen; i++) {
         point = new BMap.Point(points[i].lng, points[i].lat);
+        if(marker){
+		   map.removeOverlay(marker);
+	    }
         marker = new BMap.Marker(point);
         map.addOverlay(marker);
         //给标注点添加点击事件。使用立即执行函数和闭包
