@@ -19,8 +19,7 @@
         body {
             margin: 0px;
             padding: 10px;
-            {#background: url('./images/bgc.jpg');#}
-            background:#122b40;
+            {#background:#122b40;#}
         }
 
         div {
@@ -75,7 +74,7 @@
     </style>
 </head>
 
-<body>
+<body background={{url_for('static',filename='images/bgc.jpg')}}>
     <div id="container"></div>
     <div id="info">
       <div class = "tableBox">
