@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>echarts</title>
+    {% block styles %}
+    <link href={{ url_for('static', filename='css/bootstrap.min.css') }} rel="stylesheet">
+    {% endblock %}
+    <style type="text/css">
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px
+        }
+
+        div {
+            float: left;
+        }
+
+        #container {
+            width: 50%;
+            height: 100%;
+        }
+
+        #info {
+            padding: 10px 20px;
+        }
+        .table tbody tr td:nth-child(odd){
+            background-color: #eee;
+            color:#00b4aa;
+            text-align:right;
+        }
+        .tableBox{
+            float: left;
+            margin-right:20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <div id="info">
+      <div class = "tableBox">
+          <p>数据展示：</p>
+          <table class="table table-bordered" id="datashow">
+              <tbody>
+              </tbody>
+          </table>
+        </div>
+
+        <div class="tableBox">
+            <p>状态信息：</p>
+            <table class="table table-bordered" id="statusinfo">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% block js %}<!--js模块区域-->
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    {% endblock %}
+
+</body>
+
+</html>
